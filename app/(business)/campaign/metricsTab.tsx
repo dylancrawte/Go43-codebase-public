@@ -26,7 +26,6 @@ export default function MetricsTab({ campaignId }: MetricsTabProps) {
   }, [campaignId]);
 
   useEffect(() => {
-    console.log('Confirmed bookings:', confirmedBookings);
   }, [confirmedBookings]);
 
   const fetchConfirmedBookings = async () => {

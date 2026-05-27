@@ -17,7 +17,7 @@ export const useBusinessAuthStore = create((set) => ({
   
         set({ token, business });
       } catch (error) {
-        console.log("Auth check failed", error);
+        console.error("Auth check failed", error);
       }
     },
 

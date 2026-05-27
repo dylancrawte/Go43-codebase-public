@@ -50,7 +50,6 @@ export default function BottomModalLoginFan({
   });
 
   const handleTikTok = async () => {
-    console.log("tiktok start");
     onClose();
     await tiktokStart();
   }

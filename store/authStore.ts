@@ -43,7 +43,6 @@ export const useAuthStore = create<{
 
   checkAuth: async () => {
     try {
-      console.log("Checking auth");
       // retrieve stored auth data
       const [token, userJson, tiktokTokenExpiry] = await Promise.all([
         AsyncStorage.getItem("token"),
@@ -62,7 +61,7 @@ export const useAuthStore = create<{
             throw new Error("Essential user data missing");
           }
         } catch (parseError) { // cleans up bad data
-          console.log("User data corrupted", parseError);
+          console.warn("User data corrupted", parseError);
           await AsyncStorage.removeItem("user");
           user = null;
         }
@@ -74,7 +73,6 @@ export const useAuthStore = create<{
           const now = Date.now();
           const expiry = Number(tiktokTokenExpiry);
           if (!isNaN(expiry) && now > expiry) {
-            console.log("Tiktok token expired");
             await AsyncStorage.removeItem("token");
             await AsyncStorage.removeItem("tiktokTokenExpiry"); 
             isAuthenticated = false;
@@ -91,7 +89,7 @@ export const useAuthStore = create<{
       //updates store state
       set({ token: isAuthenticated ? token : null, user: isAuthenticated ? user : null, isAuthenticated });
     } catch (error) {
-      console.log("Auth check failed", error);
+      console.error("Auth check failed", error);
       set({ token: null, user: null, isAuthenticated: false });
       return false;
     }
@@ -321,7 +319,6 @@ export const useAuthStore = create<{
         
         set({ user: response.data.user });
         
-        console.log("TikTok data refreshed successfully");
         return { success: true, user: response.data.user };
       }
       

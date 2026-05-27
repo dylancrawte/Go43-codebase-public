@@ -24,8 +24,6 @@ export const useCampaignStore = create((set) => ({
         imageUrl = uploadResult.data.url;
       }
 
-      console.log("imageUrl", imageUrl);
-      
       // 2 - create campagin with cloudinary image url
       const response = await fetch(`${process.env.EXPO_PUBLIC_BACKEND_URL}/api/campaign/create`, {
         method: "POST",

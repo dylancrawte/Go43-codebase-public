@@ -26,24 +26,9 @@ export const useLoginOrchestrator = () => {
             
             await LoginServices.authorizeTikTok();
           } catch (error) {
-            console.log("tiktok authorize error: ", error);
+            console.error("TikTok authorize error:", error);
           }
     }
-
-    // ------------------------------ BUSINESS ORCH ------------------------------
-
-    const mapCampaignData = (campaign: any) => ({
-      eventName: campaign.eventName,
-      date: campaign.date,
-      time: campaign.time,
-      artist: campaign.artist,
-      genreTags: Array.isArray(campaign.genreTags) ? campaign.genreTags : [campaign.genreTags],
-      location: campaign.location,
-      brief: campaign.brief,
-      image: campaign.image,
-      contentDeliveryDeadline: campaign.contentDeliveryDeadline,
-      spotifyLink: campaign.spotifyLink || ""
-  });
 
     const businessLoginOrch = async (businessEmail: string, password: string) => {
       const response = await businessLogin(businessEmail, password);
@@ -77,8 +62,6 @@ export const useLoginOrchestrator = () => {
         inviteLinkInput,
         setInviteLinkInput,
         isInviteValid,
-        mapCampaignData,
-        //
         tiktokStart,
         businessLoginOrch,
         inviteSubmitOrch,

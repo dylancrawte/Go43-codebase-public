@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import { useEffect, useState, useRef } from "react";
-import { router, Stack, usePathname, useSegments } from "expo-router";
+import { router, Stack } from "expo-router";
 import { useFonts } from "expo-font";
 import { SplashScreen } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -26,18 +26,6 @@ export default function RootLayout() {
 
   const didCheckRef = useRef(false);
   const didRedirectRef = useRef(false);
-  
-  // Track route changes for debugging
-  const pathname = usePathname();
-  const segments = useSegments();
-  
-  useEffect(() => {
-    console.log("🔴 [Route Change] Pathname:", pathname, "Segments:", segments);
-    if (pathname === '/+not-found') {
-      console.log("⚠️ [Route Change] NOT-FOUND screen shown!");
-      console.trace("Stack trace for not-found navigation");
-    }
-  }, [pathname, segments]);
 
   // Check auth on mount
   useEffect(() => {
@@ -66,24 +54,6 @@ export default function RootLayout() {
   useEffect(() => {
     return setupTikTokRefresh();
   }, [setupTikTokRefresh]);
-
-  // useEffect(() => {
-  //   async function checkForUpdates() {
-  //     try {
-  //       const update = await Updates.checkForUpdateAsync();
-  //       if (update.isAvailable) {
-  //         await Updates.fetchUpdateAsync();
-  //         await Updates.reloadAsync();
-  //       }
-  //     } catch (error) {
-  //       console.log('Error checking for updates:', error);
-  //     }
-  //   }
-
-  //   if (!__DEV__) {
-  //     checkForUpdates();
-  //   }
-  // }, []);
 
   if (!fontsLoaded) return null;
 

@@ -336,11 +336,6 @@ export class MediaService {
                 };
             }
 
-            console.log("TikTok API Response Data: ", data.data);
-            console.log("TikTok API Response Data videos mediaservice: ", data.data.videos[0].cover_image_url);
-            
-
-
             return {
                 success: true,
                 data: data.data,
@@ -490,8 +485,6 @@ export class MediaService {
             });
 
             const result = await response.json();
-
-            console.log("User Videos Response: ", result);
 
             if (!response.ok) {
                 return {

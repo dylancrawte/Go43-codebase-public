@@ -56,7 +56,7 @@ export default function EventCard({
                   source={displayImage || image} 
                   style={styles.image}
                   resizeMode="cover"
-                  onError={(e) => console.log('Image loading error:', e.nativeEvent.error)}
+                  onError={() => {}}
                  />
                 <LinearGradient
                   colors={["transparent", "#000000"]}

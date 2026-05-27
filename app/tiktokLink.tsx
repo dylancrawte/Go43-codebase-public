@@ -170,53 +170,38 @@ export default function TikTokLink() {
   };
 
   const handleUpdateBoostCode = async (video: TikTokVideo) => {
-    console.log("handleUpdateBoostCode called for video:", video.id);
-    
     if (!token) {
-      console.log("No token found");
       showToast("Authentication token not found. Please log in again.", "error");
       return;
     }
-  
+
     const boostCodeValue = boostCode.get(video.id);
-    console.log("Boost code value:", boostCodeValue);
-    
     if (!boostCodeValue) {
-      console.log("No boost code value found");
       showToast("Boost code not found. Please try again.", "error");
       return;
     }
-  
+
     const dbVideoId = videoIdToDbIdMap.get(video.id);
-    console.log("DB Video ID:", dbVideoId);
-    
     if (!dbVideoId) {
-      console.log("No DB video ID found");
       showToast("Video not found in database. Please save the video first.", "error");
       return;
     }
-  
-    console.log("Starting boost code update...");
+
     setUpdatingBoostCode(video.id);
-  
+
     try {
       const result = await MediaService.updateVideoBoostCode(dbVideoId, boostCodeValue.trim(), token);
-      console.log("Update result:", result);
-  
       if (result.success) {
-        console.log("Success - showing success toast");
         showToast("Boost code updated successfully!", "success");
       } else {
-        console.log("Failed - showing error toast");
         showToast(result.error || "Failed to update boost code", "error");
       }
     } catch (error: any) {
-      console.log("Caught error:", error);
       showToast(error.message || "An unexpected error occurred", "error");
     } finally {
       setUpdatingBoostCode(null);
-    } 
-  }
+    }
+  };
 
   const renderVideoItem = ({ item }: { item: TikTokVideo }) => {
     const isSaving = savingVideoId === item.id;
@@ -235,10 +220,7 @@ export default function TikTokLink() {
           }
         }} 
         style={styles.thumbnail}
-        onError={(error) => {
-          console.log('Direct TikTok image failed:', error.nativeEvent.error);
-          console.log('Failed URL:', item.cover_image_url);
-        }}
+        onError={() => {}}
         />
       <View style={styles.videoInfo}>
         <Text style={styles.videoTitle} numberOfLines={2}>

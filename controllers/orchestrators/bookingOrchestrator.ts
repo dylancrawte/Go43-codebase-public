@@ -148,7 +148,6 @@ export const useBookingOrchestrator = (userId?: string) => {
         if (result.error) {
           setConfirmedBookings([]);
         } else {
-          console.log('🔍 DEBUG - Confirmed bookings result:', result.data);
           const bookingsWithMetrics = (result.data || []).map((booking: ConfirmedBooking) => ({
             ...booking,
             metrics: {
@@ -206,7 +205,6 @@ export const useBookingOrchestrator = (userId?: string) => {
                     return metrics || { views: 0, likes: 0, shares: 0, comments: 0 };
                   });
                   setVideoMetrics(prev => new Map([...prev, [userId, realMetrics]]));
-                  console.log("videoMetrics: ", videoMetrics);
                 } else {
                   console.warn('Failed to fetch real metrics, using zeros:', metricsResult.error);
                   const zeroMetrics = videos.map(() => ({ views: 0, likes: 0, shares: 0, comments: 0 }));
@@ -246,7 +244,6 @@ export const useBookingOrchestrator = (userId?: string) => {
                 BookingsManagementService.cancelBooking(bookingID).then(async (result) => {
                 if (result.success) {
                   setConfirmedBookings(prev => prev.filter(booking => booking._id !== bookingID));
-                  console.log('User removed successfully');
                 } else {
                   console.error('Failed to remove user:', result.error);
                 }

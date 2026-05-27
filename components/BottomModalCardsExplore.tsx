@@ -70,7 +70,6 @@ export default function BottomModalCardsExplore({
   });
 
   const handleCancelBookings = async () => {
-    console.log("cancel bookings");
     // Validation
     if (!campaign || !user || !bookingIds) return;
 

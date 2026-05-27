@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export class loginAPIs {
@@ -33,10 +33,6 @@ export class loginAPIs {
             );
             return response;
         } catch (error) {
-            // Only log if it's not a common 401 error
-            if (error instanceof AxiosError) {
-                console.log('Refresh API error:', error.response?.status, error.response?.data);
-            }
             throw error;
         }
     }

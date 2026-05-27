@@ -2,7 +2,7 @@ import { ActivityIndicator, ScrollView, View, Text, Image, StyleSheet, Touchable
 import { useEffect, useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
-import { useCampaignOrchestrator } from "@/controllers/orchestrators/campaignOrchestrator";
+import { mapCampaignForDisplay, useCampaignOrchestrator } from "@/controllers/orchestrators/campaignOrchestrator";
 import CampaignMetricsCardWrapper from "@/components/CampaignMetricsCardWrapper";
 import { useBusinessAuthStore } from "@/store/businessAuthStore";
 import { router } from "expo-router";
@@ -10,8 +10,8 @@ import { Campaign } from "../types";
 import { useLoginOrchestrator } from "@/controllers/orchestrators/loginOrchestrator";
 
 export default function BusinessHomepage() {
-    const { campaigns, isFetchingCampaigns, fetchCampaigns, fetchCampaignsByBusinessIdOrch } = useCampaignOrchestrator();
-    const { businessLogoutOrch, mapCampaignData } = useLoginOrchestrator();
+    const { campaigns, isFetchingCampaigns, fetchCampaignsByBusinessIdOrch } = useCampaignOrchestrator();
+    const { businessLogoutOrch } = useLoginOrchestrator();
     
     const business = useBusinessAuthStore((state) => state.business);
 
@@ -123,7 +123,7 @@ export default function BusinessHomepage() {
                             }
                         >
                             <CampaignMetricsCardWrapper
-                                campaignData={mapCampaignData(campaign)}
+                                campaignData={mapCampaignForDisplay(campaign)}
                                 campaignId={String(campaign?._id || index)}
                             />
                         </TouchableOpacity>
@@ -148,7 +148,7 @@ export default function BusinessHomepage() {
                             }
                         >
                             <CampaignMetricsCardWrapper
-                                campaignData={mapCampaignData(existingPlaceholderCampaign)}
+                                campaignData={mapCampaignForDisplay(existingPlaceholderCampaign)}
                                 campaignId={String(existingPlaceholderCampaign?._id || 'placeholder')}
                             />
                         </TouchableOpacity>

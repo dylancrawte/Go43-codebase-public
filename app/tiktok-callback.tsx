@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useRouter, useLocalSearchParams } from "expo-router";
+import { useRouter } from "expo-router";
 import { View, ActivityIndicator, StyleSheet } from "react-native";
 
 /**
@@ -9,15 +9,10 @@ import { View, ActivityIndicator, StyleSheet } from "react-native";
  */
 export default function TikTokCallbackScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams();
-  
+
   useEffect(() => {
-    console.log("🟡 [TikTok Callback] Route mounted with params:", params);
-    console.log("🟡 [TikTok Callback] Redirecting to /loading - SDK callback will handle logic");
-    // Immediately redirect to loading - the react-native-tiktok SDK callback
-    // will handle the actual OAuth code exchange
-    router.replace('/loading');
-  }, [router, params]);
+    router.replace("/loading");
+  }, [router]);
   
   return (
     <View style={styles.container}>

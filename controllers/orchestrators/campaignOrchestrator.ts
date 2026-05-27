@@ -4,6 +4,20 @@ import { CampaignService } from "../services/campaignServices";
 import { Alert } from "react-native";
 import { MediaService } from "../services/mediaServices";
 
+/** Shape used by campaign metric cards on the business homepage */
+export const mapCampaignForDisplay = (campaign: Partial<Campaign> & Record<string, unknown>) => ({
+  eventName: campaign.eventName,
+  date: campaign.date,
+  time: campaign.time,
+  artist: campaign.artist,
+  genreTags: Array.isArray(campaign.genreTags) ? campaign.genreTags : [campaign.genreTags],
+  location: campaign.location,
+  brief: campaign.brief,
+  image: campaign.image,
+  contentDeliveryDeadline: campaign.contentDeliveryDeadline,
+  spotifyLink: campaign.spotifyLink || "",
+});
+
 export const useCampaignOrchestrator = (initialData?: { image?: string }) => {
     const [campaigns, setCampaigns] = useState<Campaign[]>([]);
     const [isFetchingCampaigns, setIsFetchingCampaigns] = useState(false);

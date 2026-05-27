@@ -84,9 +84,7 @@ export default function ProfileScreen() {
       {
         text: "Cancel",
         style: "cancel",
-        onPress: () => {
-          console.log("Cancel pressed");
-        }
+        onPress: () => {}
       }
     ])
   };
@@ -112,8 +110,6 @@ export default function ProfileScreen() {
     }
 
     const result = await updateProfile(profileData, user)
-
-    console.log("genre:", profileData.genres)
 
     showToast(result.message, result.success ? "success" : "error");
     
@@ -196,14 +192,8 @@ export default function ProfileScreen() {
             <Image
               source={{ uri: user?.avatarUrl }}
               style={styles.profileImage}
-              onError={async (error) => {
-                console.log("Avatar failed to load, using default icon");
-                setAvatarError(true);
-              }}
-              onLoad={() => {
-                console.log("Avatar loaded successfully");
-                setAvatarError(false);
-              }}
+              onError={() => setAvatarError(true)}
+              onLoad={() => setAvatarError(false)}
             />
           ) : (
             <Ionicons
@@ -481,7 +471,7 @@ export default function ProfileScreen() {
                     source={{ uri: booking.campaignID.image || '' }}
                     style={styles.eventImage}
                     resizeMode="cover"
-                    onError={() => console.log('Event image failed to load')}
+                    onError={() => {}}
                   />
                   <View style={styles.eventInfo}>
                     <Text style={styles.eventTitle} numberOfLines={2}>

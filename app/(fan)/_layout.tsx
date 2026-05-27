@@ -13,23 +13,6 @@ export default function TabsLayout() {
   const router = useRouter();
   const { user } = useAuthStore();
 
- // ------- Instagram routes to be added back in later ---------
-
-  // const setInstagramProfile = useAuthStore(
-  //   (state) => state.setInstagramProfile
-  // );
-
-  // useEffect(() => {
-  //   const loadInstagramProfile = async () => {
-  //     const profileJson = await AsyncStorage.getItem("instagramProfile");
-  //     if (profileJson) {
-  //       const profile = JSON.parse(profileJson);
-  //       setInstagramProfile(profile); // load into Zustand
-  //     }
-  //   };
-  //   loadInstagramProfile();
-  // }, [setInstagramProfile]);
-
   const profilePress = () => {
     router.push("../../profile");
   };

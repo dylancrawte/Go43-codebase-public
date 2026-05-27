@@ -57,7 +57,6 @@ export default function RequestsTab({ campaignId, onApprove }: RequestsTabProps)
       if (result.success) {
         setPendingBookings(prev => prev.filter(booking => booking._id !== bookingID));
         onApprove(); // Notify parent to refresh metrics
-        console.log('Booking approved successfully');
       } else {
         console.error('Failed to approve booking:', result.error);
       }
@@ -71,7 +70,6 @@ export default function RequestsTab({ campaignId, onApprove }: RequestsTabProps)
       const result = await rejectBookingOrch(bookingID);
       if (result.success) {
         setPendingBookings(prev => prev.filter(booking => booking._id !== bookingID));
-        console.log('Booking rejected successfully');
       } else {
         console.error('Failed to reject booking:', result.error);
       }
@@ -121,8 +119,6 @@ export default function RequestsTab({ campaignId, onApprove }: RequestsTabProps)
                     if (booking.userID?.tiktokLink) {
                       Linking.openURL(booking.userID.tiktokLink);
                     } else {
-                      console.log('User does not have TikTok link');
-                      console.log('User ID:', booking.userID);
                     }
                   }}
                 >
