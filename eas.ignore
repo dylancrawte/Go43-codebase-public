@@ -1,0 +1,44 @@
+# Node modules & caches
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log
+
+# Local build outputs
+dist/
+build/
+android/
+.expo/
+.expo-shared/
+.expo-cache/
+web-build/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment & secrets (keep safe!)
+.env
+.env.*
+!.env.example
+
+# VCS
+.git/
+.gitignore
+
+# Editor configs & caches
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test outputs
+coverage/
+jest-results/
+
+# EAS-specific large or generated files
+*.tar.gz
+*.apk
+*.aab
+*.ipa

@@ -1,0 +1,17 @@
+
+{
+    "eventName": "Your Event Name",
+    "date": "01/01/2026",
+    "time": "19:00",
+    "artist": "Your Artist Name",
+    "genreTags": ["Genre1", "Genre2"],
+    "location": "Your Location",
+    "brief": "Your Event Brief",
+    "image": "https://example.com/your-event-image.jpg",
+    "numberOfCreators": "10",
+    "contentDeliveryDeadline": "01/02/2026",
+    "spotifyLink": "Your Spotify Link",
+    "businessId": "67b610000000000000000000",
+    "QRCode": " "
+  }
+  
